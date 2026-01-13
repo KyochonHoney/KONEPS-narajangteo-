@@ -232,11 +232,10 @@ class TenderCollectorService
                     }
                 }
 
-                // 대상 코드도 아니고 빈 값도 아닌 경우만 제외
+                // 대상 코드도 아니고 빈 값도 아닌 경우 로그만 남김 (필터링 안함, 전부 수집)
                 if (!$isTargetCode && !$isEmptyClassification) {
                     $stats['classification_filtered']++;
-                    Log::debug("필터링 제외: {$bidNtceNo} - 분류코드 '{$itemClassification}' (대상 코드 아님)");
-                    continue;
+                    Log::debug("조달분류코드 참고: {$bidNtceNo} - 분류코드 '{$itemClassification}' (811 계열 아님, 수집은 진행)");
                 }
 
                 Log::info("대상 업종코드 발견: {$bidNtceNo} - 분류코드 '{$itemClassification}' (매칭: {$matchedCode}), 서비스구분: {$srvceDivNm}");
